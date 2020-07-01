@@ -5,6 +5,7 @@ import { FiLogIn } from 'react-icons/fi';
 import logoFull from '../../assets/logo-com-texto.svg';
 import { useAuth } from '../../hooks/auth';
 import { useFontSize } from '../../hooks/fontSize';
+import HeaderLinks from './HeaderLinks';
 
 const Header: React.FC = () => {
   const { user } = useAuth();
@@ -16,22 +17,22 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className="bg-gray-200">
-        <div className="container px-4 md:mx-auto flex flex-wrap py-5 text-sm">
-          <div className="w-1/2 font-semibold text-gray-600 uppercase">
+      <div className="bg-gray-200 leading-6">
+        <div className="container px-4 lg:px-0 md:mx-auto flex flex-wrap py-5 text-sm">
+          <div className="flex-grow font-semibold text-gray-600 uppercase">
             <div className="flex flex-wrap flex-col md:flex-row">
-              <a className="" href="tel:+559621014700">
+              <a className="md:w-auto" href="tel:+559621014700">
                 TEL +55 (96) 2101-4700
               </a>
-              <Link to="/" className="md:mx-4">
+              <Link to="/" className="md:mx-4 md:w-auto">
                 Acesso a Informação
               </Link>
-              <Link to="/" className="">
+              <Link to="/" className="md:w-auto">
                 Transparência
               </Link>
             </div>
           </div>
-          <div className="w-1/2 text-center md:text-right self-center">
+          <div className="text-right self-center">
             <button type="button" onClick={increaseFontSize}>
               <sup>(1)</sup>
               <div className="sr-only">Aumentar tamanho da Fonte</div>
@@ -49,53 +50,22 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto py-4">
+      <div className="container mx-auto py-4 md:px-4 xl:px-0">
         <div className="flex flex-wrap items-center">
-          <div className="w-1/6">
-            <img src={logoFull} alt="Logomarca do Tribunal de Contas" />
+          <div className="w-full lg:w-1/5 mb-5 xl:mb-0">
+            <img
+              src={logoFull}
+              alt="Logomarca do Tribunal de Contas"
+              className="mx-auto lg:mx-0 max-w-xs md:w-full"
+            />
           </div>
-          <Link
-            className="ml-4 font-semibold text-gray-600 hover:text-blue-primary transition-colors duration-200"
-            to="/"
-          >
-            Página Inicial
-          </Link>
-          <Link
-            className="ml-4 font-semibold text-gray-600 hover:text-blue-primary transition-colors duration-200"
-            to="/noticias"
-          >
-            Institucional
-          </Link>
-          <Link
-            className="ml-4 font-semibold text-gray-600 hover:text-blue-primary transition-colors duration-200"
-            to="/noticias"
-          >
-            Ministério Público
-          </Link>
-          <Link
-            className="ml-4 font-semibold text-gray-600 hover:text-blue-primary transition-colors duration-200"
-            to="/noticias"
-          >
-            Normas e Jurisprudência
-          </Link>
-          <Link
-            className="ml-4 font-semibold text-gray-600 hover:text-blue-primary transition-colors duration-200"
-            to="/noticias"
-          >
-            Ouvidoria
-          </Link>
-          <Link
-            className="ml-4 font-semibold text-gray-600 hover:text-blue-primary transition-colors duration-200"
-            to="/noticias"
-          >
-            Serviços
-          </Link>
+          <HeaderLinks />
           <input
             className="flex-grow ml-4 border-2 focus:border-blue-900 focus:outline-none rounded-lg px-2 py-1"
             type="search"
             placeholder="Buscar"
           />
-          <div className="rounded-full ml-4">
+          <div className="rounded-full mx-4 md:mx-0 md:ml-4">
             {!user && <FiLogIn className="text-gray-600" size={24} />}
             {user && <img src={user.avatar_url} alt={user.name} />}
           </div>
