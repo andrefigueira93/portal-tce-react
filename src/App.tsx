@@ -8,16 +8,18 @@ import Routes from './routes';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-const App: React.FC = () => (
-  <Router>
-    <AppProvider>
-      <div className="h-screen">
-        <Header />
-        <Routes />
-        <Footer />
-      </div>
-    </AppProvider>
-  </Router>
-);
+const App: React.FC = () => {
+  return (
+    <Router>
+      <AppProvider>
+        <>
+          <Header />
+          <Routes />
+          <Footer />
+        </>
+      </AppProvider>
+    </Router>
+  );
+};
 
 export default App;
