@@ -1,43 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FiMenu } from 'react-icons/fi';
+import RouteLinkDTO from '../../../dtos/RouteLinkDTO';
+import HeaderLinkItem from './HeaderLinkItem';
 
-interface RouteLink {
-  rota: string;
-  nome: string;
-  children: RouteLink[] | null;
-}
-
-const links: RouteLink[] = [
+const links: RouteLinkDTO[] = [
   {
     nome: 'Página Inicial',
     rota: '/',
-    children: null,
+    child: null,
   },
   {
     nome: 'Institucional',
     rota: '/institucional',
-    children: null,
+    child: null,
   },
   {
     nome: 'Ministério Público',
     rota: '/ministerio-publico',
-    children: null,
+    child: null,
   },
   {
     nome: 'Normas e Jurisprudência',
     rota: '/normas-e-jurisprudencia',
-    children: null,
+    child: null,
   },
   {
     nome: 'Ouvidoria',
     rota: '/ouvidoria',
-    children: null,
+    child: null,
   },
   {
     nome: 'Serviços',
     rota: '/servicos',
-    children: null,
+    child: null,
   },
 ];
 
@@ -46,13 +41,12 @@ const HeaderLinks: React.FC = () => {
     <>
       <div className="hidden lg:flex flex-wrap">
         {links.map((link) => (
-          <Link
+          <HeaderLinkItem
             key={link.nome}
-            className="ml-4 font-semibold text-gray-600 hover:text-blue-primary transition-colors duration-200"
-            to={link.rota}
-          >
-            {link.nome}
-          </Link>
+            nome={link.nome}
+            rota={link.rota}
+            child={link.child}
+          />
         ))}
       </div>
       <div className="lg:hidden">

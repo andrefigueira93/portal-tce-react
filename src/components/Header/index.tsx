@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { FiLogIn } from 'react-icons/fi';
+import { FiLogIn, FiMoon, FiSun } from 'react-icons/fi';
+import {} from 'react-icons/fa';
 import logoFull from '../../assets/logo-com-texto.svg';
 import { useAuth } from '../../hooks/auth';
 import { useFontSize } from '../../hooks/fontSize';
 import HeaderLinks from './HeaderLinks';
+import { useDarkMode } from '../../hooks/darkMode';
 
 const Header: React.FC = () => {
   const { user } = useAuth();
+  const { darkMode, toggleDarkMode } = useDarkMode();
+
   const {
     increaseFontSize,
     decreaseFontSize,
@@ -32,42 +36,48 @@ const Header: React.FC = () => {
               </Link>
             </div>
           </div>
-          <div className="text-right self-center">
+          <div className="text-right self-center flex space-x-2">
             <button type="button" onClick={increaseFontSize}>
-              <sup>(1)</sup>
-              <div className="sr-only">Aumentar tamanho da Fonte</div>
-              A+
+              <sup>(1)</sup>A+
             </button>
-            <button type="button" className="mx-4" onClick={normalizeFontSize}>
-              <sup>(2)</sup> A
-              <div className="sr-only">Normalizar tamanho da Fonte</div>
+            <button type="button" onClick={normalizeFontSize}>
+              <sup>(2)</sup>A=
             </button>
             <button type="button" onClick={decreaseFontSize}>
-              <sup>(3)</sup>
-              <div className="sr-only">Diminuir tamanho da Fonte</div>
-              A-
+              <sup>(3)</sup>A-
+            </button>
+            <button type="button" className="flex" onClick={toggleDarkMode}>
+              <sup>(4)</sup>
+              {darkMode === 'on' ? <FiSun /> : <FiMoon />}
             </button>
           </div>
         </div>
       </div>
-      <div className="container mx-auto py-4 md:px-4 xl:px-0">
-        <div className="flex flex-wrap items-center">
-          <div className="w-full lg:w-1/5 mb-5 xl:mb-0">
-            <img
-              src={logoFull}
-              alt="Logomarca do Tribunal de Contas"
-              className="mx-auto lg:mx-0 max-w-xs md:w-full"
+
+      <div
+        className={`transition duration-300 ${
+          darkMode === 'on' ? 'bg-black-apoio' : ''
+        }`}
+      >
+        <div className="container mx-auto py-4 md:px-4 xl:px-0">
+          <div className="flex flex-wrap items-center">
+            <div className="w-full lg:w-1/5 mb-5 xl:mb-0">
+              <img
+                src={logoFull}
+                alt="Logomarca do Tribunal de Contas"
+                className="mx-auto lg:mx-0 max-w-xs md:w-full"
+              />
+            </div>
+            <HeaderLinks />
+            <input
+              className="flex-grow ml-4 border-2 focus:border-blue-900 focus:outline-none rounded-lg px-2 py-1"
+              type="search"
+              placeholder="Buscar"
             />
-          </div>
-          <HeaderLinks />
-          <input
-            className="flex-grow ml-4 border-2 focus:border-blue-900 focus:outline-none rounded-lg px-2 py-1"
-            type="search"
-            placeholder="Buscar"
-          />
-          <div className="rounded-full mx-4 md:mx-0 md:ml-4">
-            {!user && <FiLogIn className="text-gray-600" size={24} />}
-            {user && <img src={user.avatar_url} alt={user.name} />}
+            <div className="rounded-full mx-4 md:mx-0 md:ml-4">
+              {!user && <FiLogIn className="text-gray-600" size={24} />}
+              {user && <img src={user.avatar_url} alt={user.name} />}
+            </div>
           </div>
         </div>
       </div>
