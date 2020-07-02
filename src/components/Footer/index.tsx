@@ -1,11 +1,17 @@
 import React from 'react';
 import { FiYoutube, FiFacebook, FiTwitter, FiInstagram } from 'react-icons/fi';
+import { IconType } from 'react-icons/lib';
 import logoSimples from '../../assets/logo-simples-sm.svg';
 import { useDarkMode } from '../../hooks/darkMode';
 
 interface LinkUtil {
   link: string;
   nome: string;
+}
+
+interface SocialLinks {
+  icon: IconType | any;
+  link: string;
 }
 
 const Footer: React.FC = () => {
@@ -98,6 +104,45 @@ const Footer: React.FC = () => {
     ],
   ];
 
+  const socialLinks: SocialLinks[] = [
+    {
+      icon: (
+        <FiYoutube
+          className={`${socialIconCSS} hover:text-red-700 focus:text-red-700`}
+          size={28}
+        />
+      ),
+      link: 'https://www.youtube.com/channel/UCTysjH6OfRhnonCY76RxbGg',
+    },
+    {
+      icon: (
+        <FiFacebook
+          className={`${socialIconCSS} hover:text-blue-800 focus:text-blue-800`}
+          size={28}
+        />
+      ),
+      link: 'https://www.facebook.com/TCEAP/',
+    },
+    {
+      icon: (
+        <FiTwitter
+          className={`${socialIconCSS} hover:text-blue-400 focus:text-blue-400`}
+          size={28}
+        />
+      ),
+      link: '',
+    },
+    {
+      icon: (
+        <FiInstagram
+          className={`${socialIconCSS} hover:text-indigo-700 focus:text-indigo-700`}
+          size={28}
+        />
+      ),
+      link: 'https://www.instagram.com/tceamapa/',
+    },
+  ];
+
   return (
     <div
       className={`transition duration-300 ${
@@ -105,7 +150,11 @@ const Footer: React.FC = () => {
       }`}
     >
       <div className="container px-4 md:px-0 mx-auto mt-48 pt-4 pb-2">
-        <hr />
+        <hr
+          className={`${
+            darkMode === 'off' ? 'border-gray-200' : 'border-gray-600'
+          } transition duration-300`}
+        />
         <div className="flex flex-wrap-reverse md:flex-wrap pb-4 mt-5 mb-4 justify-around leading-8">
           <div className="w-full md:w-2/6 mt-4 md:mt-0 md:mr-4">
             <img
@@ -120,51 +169,32 @@ const Footer: React.FC = () => {
               orçamentária, operacional e patrimonial do Amapá
             </p>
             <div className="flex flex-wrap justify-center md:justify-start">
-              <a
-                href="https://www.youtube.com/channel/UCTysjH6OfRhnonCY76RxbGg"
-                rel="noreferrer"
-                target="_blank"
-              >
-                <FiYoutube
-                  className={`${socialIconCSS} hover:text-red-700 focus:text-red-700`}
-                  size={28}
-                />
-              </a>
-              <a
-                href="https://www.facebook.com/TCEAP/"
-                rel="noreferrer"
-                target="_blank"
-              >
-                <FiFacebook
-                  className={`${socialIconCSS} hover:text-blue-800 focus:text-blue-800`}
-                  size={28}
-                />
-              </a>
-              <a href="/" rel="noreferrer" target="_blank">
-                <FiTwitter
-                  className={`${socialIconCSS} hover:text-blue-400 focus:text-blue-400`}
-                  size={28}
-                />
-              </a>
-              <a
-                href="https://www.instagram.com/tceamapa/"
-                rel="noreferrer"
-                target="_blank"
-              >
-                <FiInstagram
-                  className={`${socialIconCSS} hover:text-indigo-700 focus:text-indigo-700`}
-                  size={28}
-                />
-              </a>
+              {socialLinks.map((social) => (
+                <a
+                  key={social.link}
+                  href={social.link}
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
           {links &&
             links.map((blocoDeLinks) => (
-              <div className="w-full md:w-1/5 text-gray-600">
+              <div
+                key={blocoDeLinks[0].nome}
+                className="w-full md:w-1/5 text-gray-600"
+              >
                 <ul>
                   {blocoDeLinks.map((item) => (
-                    <li>
-                      <a target="_blank" rel="noreferrer" href={item.link}>
+                    <li key={item.nome}>
+                      <a
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        href={item.link}
+                      >
                         {item.nome}
                       </a>
                     </li>
@@ -176,7 +206,11 @@ const Footer: React.FC = () => {
             Links Úteis
           </p>
         </div>
-        <hr />
+        <hr
+          className={`${
+            darkMode === 'off' ? 'border-gray-200' : 'border-gray-600'
+          } transition duration-300`}
+        />
         <p className="font-semibold text-gray-600 text-center my-4">
           Tribunal de Contas do Estado do Amapá <br />
           1991 - {ano}
