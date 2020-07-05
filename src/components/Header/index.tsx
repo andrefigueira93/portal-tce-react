@@ -1,16 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import { FiLogIn, FiMoon, FiSun } from 'react-icons/fi';
-import {} from 'react-icons/fa';
+import { FiMoon, FiSun } from 'react-icons/fi';
 import logoFull from '../../assets/logo-com-texto.svg';
-import { useAuth } from '../../hooks/auth';
 import { useFontSize } from '../../hooks/fontSize';
 import HeaderLinks from './HeaderLinks';
 import { useDarkMode } from '../../hooks/darkMode';
 
 const Header: React.FC = () => {
-  const { user } = useAuth();
   const { darkMode, toggleDarkMode } = useDarkMode();
 
   const {
@@ -21,9 +17,9 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div className="bg-gray-200 leading-6">
+      <div className="bg-gray-100 leading-6">
         <div className="container px-4 lg:px-0 md:mx-auto flex flex-wrap py-5 text-sm">
-          <div className="flex-grow font-semibold text-gray-600 uppercase">
+          <div className="flex-grow font-semibold text-gray-500 uppercase">
             <div className="flex flex-wrap flex-col md:flex-row">
               <a className="md:w-auto" href="tel:+559621014700">
                 TEL +55 (96) 2101-4700
@@ -36,47 +32,321 @@ const Header: React.FC = () => {
               </Link>
             </div>
           </div>
-          <div className="text-right self-center flex space-x-2">
-            <button type="button" onClick={increaseFontSize}>
+          <div className="text-right self-center space-x-2 flex text-gray-500">
+            <button type="button" className="flex" onClick={increaseFontSize}>
               <sup>(1)</sup>A+
             </button>
-            <button type="button" onClick={normalizeFontSize}>
-              <sup>(2)</sup>A=
+            <button type="button" className="flex" onClick={normalizeFontSize}>
+              <sup>(2)</sup>A
             </button>
-            <button type="button" onClick={decreaseFontSize}>
+            <button type="button" className="flex" onClick={decreaseFontSize}>
               <sup>(3)</sup>A-
             </button>
             <button type="button" className="flex" onClick={toggleDarkMode}>
               <sup>(4)</sup>
-              {darkMode === 'on' ? <FiSun /> : <FiMoon />}
+              {darkMode === 'on' ? (
+                <FiSun className="self-center" />
+              ) : (
+                <FiMoon className="self-center" />
+              )}
+              &nbsp;
             </button>
           </div>
         </div>
       </div>
-
       <div
         className={`transition duration-300 ${
-          darkMode === 'on' ? 'bg-black-apoio' : ''
-        }`}
+          darkMode === 'on' ? 'bg-black-apoio' : 'bg-white'
+        } relative`}
       >
-        <div className="container mx-auto py-4 md:px-4 xl:px-0">
-          <div className="flex flex-wrap items-center">
-            <div className="w-full lg:w-1/5 mb-5 xl:mb-0">
+        <div className="flex container lg:mx-auto justify-between items-center px-4 py-6 sm:px-6 md:justify-start md:space-x-10">
+          <div>
+            <Link to="/" className="flex">
               <img
+                className="h-8 w-auto sm:h-10"
                 src={logoFull}
-                alt="Logomarca do Tribunal de Contas"
-                className="mx-auto lg:mx-0 max-w-xs md:w-full"
+                alt="Tribunal de Contas do Estado do Amapá"
               />
-            </div>
+            </Link>
+          </div>
+          <div className="-mr-2 -my-2 md:hidden">
+            <button
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className="hidden md:flex-1 md:flex md:items-center md:justify-between md:space-x-12">
             <HeaderLinks />
-            <input
-              className="flex-grow ml-4 border-2 focus:border-blue-900 focus:outline-none rounded-lg px-2 py-1"
-              type="search"
-              placeholder="Buscar"
-            />
-            <div className="rounded-full mx-4 md:mx-0 md:ml-4">
-              {!user && <FiLogIn className="text-gray-600" size={24} />}
-              {user && <img src={user.avatar_url} alt={user.name} />}
+          </div>
+        </div>
+
+        {/* <!--
+    Mobile menu, show/hide based on mobile menu state.
+
+    Entering: "duration-200 ease-out"
+      From: "opacity-0 scale-95"
+      To: "opacity-100 scale-100"
+    Leaving: "duration-100 ease-in"
+      From: "opacity-100 scale-100"
+      To: "opacity-0 scale-95"
+  --> */}
+        <div className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+          <div className="rounded-lg shadow-lg">
+            <div className="rounded-lg shadow-xs bg-white divide-y-2 divide-gray-50">
+              <div className="pt-5 pb-6 px-5 space-y-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <img className="h-8 w-auto" src={logoFull} alt="TCE-AP" />
+                  </div>
+                  <div className="-mr-2">
+                    <button
+                      type="button"
+                      className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+                    >
+                      <svg
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <nav className="grid gap-6">
+                    <a
+                      href="/"
+                      className="-m-3 p-3 flex items-center space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150"
+                    >
+                      <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white">
+                        <svg
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-base leading-6 font-medium text-gray-900">
+                        Analytics
+                      </div>
+                    </a>
+                    <a
+                      href="/"
+                      className="-m-3 p-3 flex items-center space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150"
+                    >
+                      <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white">
+                        <svg
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-base leading-6 font-medium text-gray-900">
+                        Engagement
+                      </div>
+                    </a>
+                    <a
+                      href="/"
+                      className="-m-3 p-3 flex items-center space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150"
+                    >
+                      <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white">
+                        <svg
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-base leading-6 font-medium text-gray-900">
+                        Security
+                      </div>
+                    </a>
+                    <a
+                      href="/"
+                      className="-m-3 p-3 flex items-center space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150"
+                    >
+                      <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white">
+                        <svg
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-base leading-6 font-medium text-gray-900">
+                        Integrations
+                      </div>
+                    </a>
+                    <a
+                      href="/"
+                      className="-m-3 p-3 flex items-center space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150"
+                    >
+                      <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white">
+                        <svg
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-base leading-6 font-medium text-gray-900">
+                        Automations
+                      </div>
+                    </a>
+                    <a
+                      href="/"
+                      className="-m-3 p-3 flex items-center space-x-4 rounded-lg hover:bg-gray-50 transition ease-in-out duration-150"
+                    >
+                      <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-indigo-500 text-white">
+                        <svg
+                          className="h-6 w-6"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                          />
+                        </svg>
+                      </div>
+                      <div className="text-base leading-6 font-medium text-gray-900">
+                        Reports
+                      </div>
+                    </a>
+                  </nav>
+                </div>
+              </div>
+              <div className="py-6 px-5 space-y-6">
+                <div className="grid grid-cols-2 gap-4">
+                  <a
+                    href="/"
+                    className="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150"
+                  >
+                    Pricing
+                  </a>
+                  <a
+                    href="/"
+                    className="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150"
+                  >
+                    Docs
+                  </a>
+                  <a
+                    href="/"
+                    className="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150"
+                  >
+                    Enterprise
+                  </a>
+                  <a
+                    href="/"
+                    className="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150"
+                  >
+                    Blog
+                  </a>
+                  <a
+                    href="/"
+                    className="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150"
+                  >
+                    Help Center
+                  </a>
+                  <a
+                    href="/"
+                    className="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150"
+                  >
+                    Guides
+                  </a>
+                  <a
+                    href="/"
+                    className="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150"
+                  >
+                    Security
+                  </a>
+                  <a
+                    href="/"
+                    className="text-base leading-6 font-medium text-gray-900 hover:text-gray-700 transition ease-in-out duration-150"
+                  >
+                    Events
+                  </a>
+                </div>
+                <div className="space-y-6">
+                  <span className="w-full flex rounded-md shadow-sm">
+                    <a
+                      href="/"
+                      className="w-full flex items-center justify-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
+                    >
+                      Sign up
+                    </a>
+                  </span>
+                  <p className="text-center text-base leading-6 font-medium text-gray-500">
+                    Existing customer?
+                    <a
+                      href="/"
+                      className="text-indigo-600 hover:text-indigo-500 transition ease-in-out duration-150"
+                    >
+                      Sign in
+                    </a>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
