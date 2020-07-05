@@ -10,7 +10,7 @@ const HeaderLinkItem: React.FC<RouteLinkDTO> = ({
   rota,
   child,
 }: RouteLinkDTO) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const { darkMode } = useDarkMode();
 
   function handleOpenState(): void {
@@ -35,7 +35,11 @@ const HeaderLinkItem: React.FC<RouteLinkDTO> = ({
           <FiChevronDown
             className={`${
               open ? 'rotate-180' : ''
-            } text-cool-gray-500 h-5 w-5 group-hover:text-cool-gray-500 group-focus:text-cool-gray-500 transition ease-in-out duration-150 transform`}
+            } h-5 w-5 transition ease-in-out duration-150 transform ${
+              darkMode === 'on'
+                ? 'text-cool-gray-500 group-hover:text-yellow-primary group-focus:text-yellow-primary'
+                : 'text-cool-gray-500 group-hover:text-blue-primary group-focus:text-blue-primary'
+            }`}
           />
         </button>
         <Transition
@@ -47,21 +51,35 @@ const HeaderLinkItem: React.FC<RouteLinkDTO> = ({
           leaveFrom="opacity-100 translate-y-0"
           leaveTo="opacity-0 translate-y-1"
         >
-          <div className="absolute -ml-4 mt-3 transform w-screen max-w-md lg:max-w-2xl transition">
+          <div className="absolute -ml-4 mt-3 w-full sm:w-screen lg:max-w-2xl">
             <div className="rounded-lg shadow-lg">
-              <div className="rounded-lg shadow-xs overflow-hidden">
-                <div className="z-20 relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2">
+              <div className="rounded-lg shadow overflow-hidden">
+                <div
+                  className={`${
+                    darkMode === 'on' ? 'bg-cool-gray-800' : 'bg-white'
+                  } z-20 relative grid gap-6 px-5 py-6 sm:gap-8 sm:p-8 lg:grid-cols-2`}
+                >
                   {child.map((subItem) => (
                     <Link
                       key={subItem.nome}
                       to={subItem.rota}
-                      className="-m-3 p-3 flex items-start space-x-4 rounded-lg hover:bg-gray-200 transition ease-in-out duration-150"
+                      className={`${
+                        darkMode === 'on'
+                          ? 'hover:bg-cool-gray-700'
+                          : 'hover:bg-gray-200'
+                      } -m-3 p-3 flex items-start space-x-4 rounded-lg transition ease-in-out duration-150`}
                     >
                       <div className="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-md bg-blue-primary text-white sm:h-12 sm:w-12 ">
                         <FiFileText size={24} />
                       </div>
                       <div className="space-y-1">
-                        <p className="text-base leading-6 font-medium text-gray-900">
+                        <p
+                          className={`${
+                            darkMode === 'on'
+                              ? 'text-yellow-primary'
+                              : 'text-gray-900'
+                          } text-base leading-6 font-medium`}
+                        >
                           {subItem.nome}
                         </p>
                         <p className="text-sm leading-5 text-cool-gray-500">
@@ -82,10 +100,10 @@ const HeaderLinkItem: React.FC<RouteLinkDTO> = ({
 
   return (
     <Link
-      className={`text-base leading-6 font-medium text-cool-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition ease-in-out duration-150 ${
+      className={`text-base leading-6 font-medium text-cool-gray-500 hover:text-gray-900 focus:outline-none transition ease-in-out duration-150 ${
         darkMode === 'on'
-          ? 'hover:text-yellow-primary'
-          : 'hover:text-blue-primary'
+          ? 'hover:text-yellow-primary focus:text-yellow-primary'
+          : 'hover:text-blue-primary focus:text-blue-primary'
       }`}
       to={rota}
     >

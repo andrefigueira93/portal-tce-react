@@ -53,7 +53,7 @@ const links: RouteLinkDTO[] = [
 
 const HeaderLinks: React.FC = () => {
   return (
-    <nav className="flex space-x-3 xl:space-x-5">
+    <nav className="grid gap-4 lg:gap-0 lg:flex md:space-x-3 xl:space-x-5">
       {links.map(({ nome, rota, child }) => (
         <HeaderLinkItem key={nome} rota={rota} nome={nome} child={child} />
       ))}
