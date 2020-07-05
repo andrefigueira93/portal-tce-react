@@ -145,16 +145,11 @@ const Footer: React.FC = () => {
 
   return (
     <div
-      className={`transition duration-300 ${
+      className={`transition duration-300 mt-12 ${
         darkMode === 'on' ? 'bg-black-apoio' : ''
       }`}
     >
-      <div className="container px-4 md:px-0 mx-auto mt-48 pt-4 pb-2">
-        <hr
-          className={`${
-            darkMode === 'off' ? 'border-gray-200' : 'border-gray-600'
-          } transition duration-300`}
-        />
+      <div className="container px-4 md:px-0 mx-auto pt-4 pb-2">
         <div className="flex flex-wrap-reverse md:flex-wrap pb-4 mt-5 mb-4 justify-around leading-8">
           <div className="w-full md:w-2/6 mt-4 md:mt-0 md:mr-4">
             <img
@@ -193,7 +188,11 @@ const Footer: React.FC = () => {
                       <a
                         target="_blank"
                         rel="noreferrer noopener"
-                        className="hover:text-blue-primary transition duration-200"
+                        className={`${
+                          darkMode === 'on'
+                            ? 'hover:text-yellow-primary focus:text-yellow-primary'
+                            : 'hover:text-blue-primary focus:text-blue-primary'
+                        } transition duration-200`}
                         href={item.link}
                       >
                         {item.nome}
@@ -209,7 +208,7 @@ const Footer: React.FC = () => {
         </div>
         <hr
           className={`${
-            darkMode === 'off' ? 'border-gray-200' : 'border-gray-600'
+            darkMode === 'off' ? 'border-gray-100' : 'border-gray-600'
           } transition duration-300`}
         />
         <p className="font-semibold text-cool-gray-500 text-center my-4">
