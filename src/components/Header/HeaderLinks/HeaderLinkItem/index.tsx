@@ -10,7 +10,7 @@ const HeaderLinkItem: React.FC<RouteLinkDTO> = ({
   rota,
   child,
 }: RouteLinkDTO) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const { darkMode } = useDarkMode();
 
   function handleOpenState(): void {

@@ -9,7 +9,7 @@ import Transition from '../Transition';
 
 const Header: React.FC = () => {
   const { darkMode, toggleDarkMode } = useDarkMode();
-  const [mobileMenuShow, setMobileMenuShow] = useState(true);
+  const [mobileMenuShow, setMobileMenuShow] = useState(false);
 
   const {
     increaseFontSize,
