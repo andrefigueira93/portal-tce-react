@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
   const idade = ano - 1991;
 
   const socialIconCSS =
-    'mr-4 text-gray-600 focus:outline-none transition-colors duration-200';
+    'mr-4 text-cool-gray-500 focus:outline-none transition-colors duration-200';
 
   const links: Array<LinkUtil[]> = [
     [
@@ -162,7 +162,7 @@ const Footer: React.FC = () => {
               alt="Logomarca Simples do TCE-AP"
               className="mx-auto md:mx-0"
             />
-            <p className="my-4 font-semibold text-gray-600 text-center md:text-left">
+            <p className="my-4 font-semibold text-cool-gray-500 text-center md:text-left">
               Tribunal de Contas do Estado do Amapá
               <br />
               Há {idade} anos realizando fiscalização contábil, financeira,
@@ -185,7 +185,7 @@ const Footer: React.FC = () => {
             links.map((blocoDeLinks) => (
               <div
                 key={blocoDeLinks[0].nome}
-                className="w-full md:w-1/5 text-gray-600"
+                className="w-full md:w-1/5 text-cool-gray-500"
               >
                 <ul>
                   {blocoDeLinks.map((item) => (
@@ -193,6 +193,7 @@ const Footer: React.FC = () => {
                       <a
                         target="_blank"
                         rel="noreferrer noopener"
+                        className="hover:text-blue-primary transition duration-200"
                         href={item.link}
                       >
                         {item.nome}
@@ -202,7 +203,7 @@ const Footer: React.FC = () => {
                 </ul>
               </div>
             ))}
-          <p className="md:hidden uppercase text-gray-600 font-bold">
+          <p className="md:hidden uppercase text-cool-gray-500 font-bold">
             Links Úteis
           </p>
         </div>
@@ -211,7 +212,7 @@ const Footer: React.FC = () => {
             darkMode === 'off' ? 'border-gray-200' : 'border-gray-600'
           } transition duration-300`}
         />
-        <p className="font-semibold text-gray-600 text-center my-4">
+        <p className="font-semibold text-cool-gray-500 text-center my-4">
           Tribunal de Contas do Estado do Amapá <br />
           1991 - {ano}
         </p>

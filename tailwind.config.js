@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   purge: [],
   theme: {
@@ -14,8 +16,18 @@ module.exports = {
         'blue-secondary': '#ebf5ff',
         'blue-apoio': '#3E72E1',
       },
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
     },
   },
   variants: {},
-  plugins: [],
+  purge: {
+    enabled: true,
+    content: ['./src/**/*.tsx']
+  },
+  plugins: [
+    require('@tailwindcss/ui'),
+    require('@tailwindcss/custom-forms'),
+  ],
 }
