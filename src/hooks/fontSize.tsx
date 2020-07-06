@@ -40,9 +40,7 @@ export const FontSizeProvider: React.FC = ({ children }) => {
         normalizeFontSize,
       }}
     >
-      <div className="h-screen" style={{ fontSize: `${fontSize}rem` }}>
-        {children}
-      </div>
+      <div style={{ fontSize: `${fontSize}rem` }}>{children}</div>
     </FontSizeContext.Provider>
   );
 };
