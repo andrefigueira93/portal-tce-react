@@ -1,4 +1,10 @@
-import React, { createContext, useState, useCallback, useContext } from 'react';
+import React, {
+  createContext,
+  useState,
+  useCallback,
+  useContext,
+  useEffect,
+} from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 interface DarkModeContextData {
@@ -18,15 +24,21 @@ export const DarkModeProvider: React.FC = ({ children }) => {
       return mode;
     }
 
+    localStorage.setItem('@PortalTCE:darkMode', 'off');
     return 'off';
   });
 
   const toggleDarkMode = useCallback(() => {
     darkMode === 'off' ? setDarkMode('on') : setDarkMode('off');
+  }, [darkMode]);
+
+  useEffect(() => {
     localStorage.setItem('@PortalTCE:darkMode', darkMode);
   }, [darkMode]);
 
-  useHotkeys('alt+4', toggleDarkMode);
+  useHotkeys('alt+4', () => {
+    darkMode === 'off' ? setDarkMode('on') : setDarkMode('off');
+  });
 
   return (
     <DarkModeContext.Provider
@@ -35,7 +47,9 @@ export const DarkModeProvider: React.FC = ({ children }) => {
         toggleDarkMode,
       }}
     >
-      {children}
+      <div className={darkMode === 'on' ? 'bg-black-apoio' : 'bg-white'}>
+        {children}
+      </div>
     </DarkModeContext.Provider>
   );
 };
