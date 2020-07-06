@@ -61,7 +61,7 @@ const Header: React.FC = () => {
         </div>
       </div>
       <div
-        className={`transition duration-300 ${
+        className={`transition duration-300 shadow ${
           darkMode === 'on' ? 'bg-black-apoio' : 'bg-white'
         } relative`}
       >
@@ -110,7 +110,7 @@ const Header: React.FC = () => {
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          <div className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+          <div className="absolute top-0 inset-x-0 z-10 p-2 transition transform origin-top-right md:hidden">
             <div className="rounded-lg shadow-lg">
               <div
                 className={`${
