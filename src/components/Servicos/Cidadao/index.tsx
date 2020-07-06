@@ -48,7 +48,7 @@ const ServicosCidadao: React.FC = () => {
       } overflow-hidden`}
     >
       {/* <div className="relative max-w-screen-xl mx-auto py-12 px-4 sm:px-6 sm:py-12 lg:px-8"> */}
-      <div className="relative mx-auto pb-12 pt-8 px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto sm:pb-12 pt-8 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto text-center sm:text-right">
           <h3
             className={`${
@@ -97,7 +97,7 @@ const ServicosCidadao: React.FC = () => {
               fill="url(#8b1b5f72-e944-4457-af67-0c6d15a99f38)"
             />
           </svg> */}
-        <div className="relative py-6 lg:grid lg:grid-cols-3 lg:col-gap-8">
+        <div className="relative pb-6 sm:py-6 lg:grid lg:grid-cols-3 lg:col-gap-8">
           <div className="lg:col-span-1" />
           <div className="mt-10 sm:grid sm:grid-cols-2 sm:col-gap-8 sm:row-gap-10 lg:col-span-2 lg:mt-0">
             {servicosCidadao.map((servico) => (

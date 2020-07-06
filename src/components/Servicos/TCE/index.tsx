@@ -36,9 +36,13 @@ const servicosTCE: ServicoDTO[] = [
 ];
 
 const ServicosTCE: React.FC = () => {
-  // const { darkMode } = useDarkMode();
+  const { darkMode } = useDarkMode();
   return (
-    <div className="py-1 sm:py-12 bg-cool-gray-100">
+    <div
+      className={`py-1 sm:py-12 ${
+        darkMode === 'on' ? 'bg-black-apoio' : 'bg-cool-gray-100'
+      }`}
+    >
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mt-5 sm:mt-10">
           <ul className="md:grid md:grid-cols-2 md:col-gap-8 md:row-gap-10">
@@ -49,10 +53,16 @@ const ServicosTCE: React.FC = () => {
                     <img src={servico.icone} alt={servico.nome} />
                   </div>
                   <div className="ml-4">
-                    <h4 className="text-lg leading-6 font-medium text-blue-primary">
+                    <h4
+                      className={`text-lg leading-6 font-medium ${
+                        darkMode === 'on'
+                          ? 'text-yellow-primary'
+                          : 'text-blue-primary'
+                      }`}
+                    >
                       {servico.nome}
                     </h4>
-                    <p className="mt-2 text-base leading-6 text-cool-gray-500">
+                    <p className="mt-2 text-base leading-6 text-cool-gray-400">
                       {servico.descricao}
                     </p>
                   </div>

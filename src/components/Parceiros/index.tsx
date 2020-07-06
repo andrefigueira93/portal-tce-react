@@ -49,7 +49,7 @@ const parceiros: Parceiro[] = [
 const Parceiros: React.FC = () => {
   const { darkMode } = useDarkMode();
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto pb-5">
       <h2
         className={`text-center ${
           darkMode === 'on' ? 'text-yellow-primary' : 'text-blue-primary'
