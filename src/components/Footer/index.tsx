@@ -145,10 +145,15 @@ const Footer: React.FC = () => {
 
   return (
     <div
-      className={`transition duration-300 mt-12 ${
-        darkMode === 'on' ? 'bg-black-apoio' : ''
+      className={`transition duration-300 ${
+        darkMode === 'on' ? 'bg-black-apoio' : 'bg-white'
       }`}
     >
+      <hr
+        className={`${
+          darkMode === 'off' ? 'border-gray-100' : 'border-gray-600'
+        } transition duration-300`}
+      />
       <div className="container px-4 md:px-0 mx-auto pt-4 pb-2">
         <div className="flex flex-wrap-reverse md:flex-wrap pb-4 mt-5 mb-4 justify-around leading-8">
           <div className="w-full md:w-2/6 mt-4 md:mt-0 md:mr-4">
