@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export default interface Noticia {
   id: number;
   titulo: string;
@@ -8,4 +9,6 @@ export default interface Noticia {
   autor: string;
   criado: string;
   image: string;
+  created_at: string;
+  updated_at: string;
 }
