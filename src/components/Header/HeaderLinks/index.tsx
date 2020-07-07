@@ -16,23 +16,7 @@ const links: RouteLinkDTO[] = [
   {
     nome: 'Ministério Público',
     rota: '/ministerio-publico',
-    child: [
-      {
-        nome: 'História',
-        rota: '/ministerio-publico-historia',
-        child: null,
-      },
-      {
-        nome: 'Atuação',
-        rota: '/ministerio-publico-atuacao',
-        child: null,
-      },
-      {
-        nome: 'Membros',
-        rota: '/ministerio-publico-membros',
-        child: null,
-      },
-    ],
+    child: null,
   },
   {
     nome: 'Normas e Jurisprudência',

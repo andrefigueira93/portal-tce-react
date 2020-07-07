@@ -49,11 +49,11 @@ const ServicosCidadao: React.FC = () => {
     >
       {/* <div className="relative max-w-screen-xl mx-auto py-12 px-4 sm:px-6 sm:py-12 lg:px-8"> */}
       <div className="relative mx-auto sm:pb-12 pt-8 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto text-center sm:text-right">
+        <div className="container mx-auto text-center">
           <h3
             className={`${
               darkMode === 'on' ? 'text-yellow-primary' : 'text-blue-primary'
-            } text-3xl sm:mr-56 inline-block leading-9 font-extrabold tracking-tight sm:text-4xl sm:leading-10`}
+            } text-3xl sm:mr-56 sm:pl-24 inline-block leading-9 font-extrabold tracking-tight sm:text-4xl sm:leading-10`}
           >
             Serviços do Cidadão
           </h3>
